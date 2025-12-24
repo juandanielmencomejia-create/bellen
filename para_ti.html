@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Para Bellen</title>
+
+<style>
+body{
+  margin:0;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+  font-family: 'Segoe UI', sans-serif;
+  color:white;
+}
+
+.card{
+  background: rgba(0,0,0,0.45);
+  padding:34px;
+  border-radius:20px;
+  max-width:440px;
+  max-height:80vh;
+  overflow-y:auto;
+  text-align:center;
+  box-shadow: 0 0 35px rgba(0,0,0,0.45);
+}
+
+h2, h3{
+  font-weight:500;
+}
+
+p{
+  line-height:1.7;
+  font-size:16px;
+}
+
+button{
+  margin-top:18px;
+  padding:12px 24px;
+  border:none;
+  border-radius:14px;
+  background:#ff4d6d;
+  color:white;
+  font-size:15px;
+  cursor:pointer;
+}
+
+button:hover{
+  background:#ff6b81;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card" id="app">
+  <h2>🌙 Hola, Bellen</h2>
+  <p>
+    Quise hacer algo diferente.<br>
+    Algo que no se perdiera entre mensajes comunes.
+  </p>
+  <button onclick="start()">Abrir</button>
+</div>
+
+<audio id="bgMusic" loop>
+  <source src="musica.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const app = document.getElementById("app");
+const music = document.getElementById("bgMusic");
+
+function start(){
+  music.volume = 0.25;
+  music.play();
+  menu();
+}
+
+function menu(){
+  app.innerHTML = `
+    <h3>Tómate tu tiempo</h3>
+    <p>Elige lo que quieras leer.</p>
+    <button onclick="msg(1)">💌 Una carta para ti</button><br>
+    <button onclick="msg(2)">✨ Por qué eres especial</button><br>
+    <button onclick="msg(3)">🌱 Algo sincero</button><br>
+    <button onclick="msg(4)">🎄 Para cerrar esta noche</button>
+  `;
+}
+
+function msg(n){
+  const texts = {
+    1: `
+      <strong>Bellen,</strong><br><br>
+
+      Quería escribirte algo que no dependiera del momento ni del ruido de otros mensajes, algo que pudieras leer con calma sabiendo que fue pensado solo para ti.<br><br>
+
+      No porque tenga todas las palabras perfectas, sino porque hay personas que merecen algo más que un “feliz 24” y ya.<br><br>
+
+      Tú eres una de ellas.<br><br>
+
+      Quería que supieras que tu forma de ser, tu presencia y la confianza que se siente contigo no pasan desapercibidas.<br><br>
+
+      Hay detalles en ti que se notan más de lo que imaginas, en la manera en que estás, en cómo escuchas y en cómo haces que los momentos se sientan tranquilos y reales.<br><br>
+
+      Incluso sin decir nada, incluso en silencio, transmites algo bonito que se queda, algo que da calma y que hace que estar contigo se sienta natural y sincero.<br><br>
+
+      Tu forma de estar tiene ese efecto de hacer que todo vaya un poco más despacio y se sienta más ligero, y aunque no siempre se diga en voz alta, hay personas que valoran profundamente eso, que aprecian tu presencia y que encuentran algo especial en ti simplemente por ser como eres.
+    `,
+    2: `
+      Eres especial por detalles que no todo el mundo nota.<br><br>
+
+      Por la tranquilidad que transmites, por cómo se siente hablar contigo y por la forma en que haces que las cosas se sientan reales y simples al mismo tiempo.<br><br>
+
+      No es algo que se fuerce.<br>
+      Es algo que simplemente se siente.<br><br>
+
+      Y por eso quise hacer esto para ti.
+    `,
+    3: `
+      No hice esto esperando algo a cambio.<br><br>
+
+      No hay una intención escondida ni una expectativa.<br><br>
+
+      Solo quería que esta noche supieras que importas, que se nota cuando estás y que hay gestos que nacen simplemente porque sí.
+    `,
+    4: `
+      Gracias por estar, por lo que eres y por el espacio que ocupas.<br><br>
+
+      Ojalá este dia y todos los que vengan te sientas tan especial como realmente eres.<br><br>
+
+      Feliz 24, Bellen 🎄
+    `
+  };
+
+  app.innerHTML = `
+    <p>${texts[n]}</p>
+    <button onclick="menu()">Volver</button>
+  `;
+}
+</script>
+
+</body>
+</html>
